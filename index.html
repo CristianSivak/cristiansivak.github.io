@@ -130,6 +130,25 @@
     padding:3px 9px;border-radius:4px;
   }
 
+  .project h3 .sub{font-weight:400;color:var(--muted);font-size:1rem;}
+  details{margin-top:12px;}
+  summary{
+    cursor:pointer;font-family:var(--mono);font-size:0.8rem;color:var(--accent);
+    list-style:none;display:inline-block;
+  }
+  summary::-webkit-details-marker{display:none;}
+  summary::before{content:"+ ";}
+  details[open] summary::before{content:"− ";}
+  .detail{
+    margin-top:14px;padding:18px 20px;background:var(--bg-soft);
+    border:1px solid var(--line);border-radius:6px;font-size:0.95rem;
+  }
+  .detail p{margin:0 0 10px;}
+  .detail strong{font-family:var(--mono);font-size:0.78rem;color:var(--accent);text-transform:uppercase;letter-spacing:0.04em;}
+  .detail h4{font-family:var(--mono);font-size:0.78rem;color:var(--accent);text-transform:uppercase;letter-spacing:0.04em;margin:16px 0 8px;}
+  .detail ul{margin:0;padding-left:20px;}
+  .detail li{margin-bottom:6px;}
+
   footer{
     padding:50px 0 80px;
     font-family:var(--mono);
@@ -162,7 +181,7 @@
   <div class="wrap">
     <p class="kicker">Full Stack Engineer · Buenos Aires, Argentina</p>
     <h1>Cristian Sivak</h1>
-    <p class="lead">Desarrollo aplicaciones web fullstack con React, TypeScript, Node.js y AWS. Más de 5 años construyendo productos en producción para equipos distribuidos, con foco en arquitectura Serverless e integración activa de IA en el flujo de desarrollo.</p>
+    <p class="lead">Desarrollo aplicaciones web fullstack con React, TypeScript, Node.js, Go y AWS. Más de 5 años construyendo productos en producción para equipos distribuidos, con foco en arquitectura Serverless e integración activa de IA en el flujo de desarrollo.</p>
     <div class="contact-row">
       <a href="mailto:cristian.svk@gmail.com">cristian.svk@gmail.com</a>
       <a href="https://github.com/CristianSivak" target="_blank" rel="noopener">github.com/CristianSivak</a>
@@ -175,7 +194,7 @@
   <div class="wrap">
     <h2>Perfil</h2>
     <p>Soy Full Stack Engineer con más de 5 años de experiencia, especializado en React, TypeScript, Node.js y AWS. Actualmente trabajo en TeamArt.ro, empresa contractor con clientes en EE.UU., desarrollando aplicaciones fullstack en equipos distribuidos desde febrero de 2021.</p>
-    <p>Me enfoco en frontend con React/TypeScript, integración de APIs REST y arquitecturas Serverless sobre AWS (Lambda, API Gateway, EventBridge). Incorporo herramientas de IA como Claude Code y GitHub Copilot en mi flujo de trabajo diario, usándolas para generación y revisión de código, debugging y documentación.</p>
+    <p>Me enfoco en frontend con React/TypeScript, integración de APIs REST y arquitecturas Serverless y orientadas a eventos sobre AWS (Lambda, API Gateway, SNS), y recientemente microservicios en Go con gRPC. Incorporo herramientas de IA como Claude Code y GitHub Copilot en mi flujo de trabajo diario, usándolas para generación y revisión de código, debugging y documentación.</p>
     <p>Tecnicatura Universitaria en Programación Informática — Universidad Tecnológica Nacional (UTN), marzo 2020 – noviembre 2023. Inglés nivel B2.</p>
   </div>
 </section>
@@ -186,27 +205,27 @@
     <div class="stack-grid">
       <div class="stack-group">
         <h3>Frontend</h3>
-        <p>JavaScript, TypeScript, React, React Native, Next.js</p>
+        <p>JavaScript, TypeScript, React, Redux Toolkit, React Query, Apollo Client, Material UI, AG Grid, micro-frontends (Module Federation), Next.js, React Native</p>
       </div>
       <div class="stack-group">
         <h3>Backend</h3>
-        <p>Node.js, Hono, TypeORM, APIs REST, GraphQL, Serverless, Joi, Redis, JWT</p>
+        <p>Node.js, Hono, Go, gRPC / Protobuf, APIs REST, GraphQL, Serverless, TypeORM, Joi, Redis, JWT, OAuth</p>
       </div>
       <div class="stack-group">
         <h3>Cloud &amp; DevOps</h3>
-        <p>AWS (Lambda, API Gateway, EventBridge, S3, RDS, DynamoDB), Docker, CI/CD</p>
+        <p>AWS (Lambda, API Gateway, SNS, SQS, S3, RDS, DynamoDB, Athena, Cognito), Google Cloud, Docker, Kubernetes (Helm, ArgoCD), CI/CD</p>
       </div>
       <div class="stack-group">
         <h3>Bases de datos</h3>
-        <p>PostgreSQL, MySQL, DynamoDB, Athena, Snowflake</p>
+        <p>PostgreSQL, MySQL, DynamoDB, Redis, Athena, Snowflake</p>
       </div>
       <div class="stack-group">
         <h3>Integraciones</h3>
-        <p>Twilio (SMS/MMS), AWS SNS, APIs de terceros</p>
+        <p>Twilio (SMS/MMS), AWS SNS, Google APIs, APIs de terceros</p>
       </div>
       <div class="stack-group">
         <h3>Prácticas</h3>
-        <p>Git, Testing (Jest), Scrum, microservicios, desarrollo asistido por IA generativa</p>
+        <p>Git, Testing (Jest, Vitest, Playwright), Scrum, microservicios, desarrollo asistido por IA generativa</p>
       </div>
     </div>
   </div>
@@ -218,47 +237,104 @@
 
     <div class="project">
       <div class="title-row">
-        <h3>Plataforma de Forecasting</h3>
-        <span class="status">En producción</span>
+        <h3>Water Systems <span class="sub">— SaaS de cumplimiento regulatorio para municipios de EE.UU.</span></h3>
+        <span class="status">mar 2026 – actualidad</span>
       </div>
-      <p class="desc">Arquitectura de microservicios 100% Serverless en AWS, con funciones Lambda pequeñas e independientes desacopladas vía EventBridge, y Snowflake como capa analítica.</p>
-      <div class="tags"><span>React</span><span>TypeScript</span><span>AWS Lambda</span><span>API Gateway</span><span>EventBridge</span><span>Snowflake</span></div>
+      <p class="desc">Plataforma SaaS multi-tenant que usan municipios y empresas de agua de EE.UU. para gestionar programas de cumplimiento ambiental: prevención de reflujo (backflow), grasas y aceites (FOG) y pretratamiento industrial. Más de 30 microservicios en Go comunicados por gRPC detrás de un API Gateway REST→gRPC y Envoy, con PostgreSQL compartido y SPA en React. Equipo remoto, 100% en inglés.</p>
+      <div class="tags"><span>React</span><span>TypeScript</span><span>Go</span><span>gRPC</span><span>PostgreSQL</span><span>AG Grid</span><span>Playwright</span><span>Google Cloud</span></div>
+      <details>
+        <summary>Ver detalle</summary>
+        <div class="detail">
+          <p><strong>Frontend:</strong> React + TypeScript, Redux Toolkit, Material UI, AG Grid Enterprise (filtros, vistas guardadas, edición masiva), React Hook Form, Formik + Yup, MapLibre GL, pdf.js / pdf-lib, Webpack. Tests con Jest y Testing Library; E2E y accesibilidad con Playwright y axe-core.</p><p><strong>Backend:</strong> Go 1.24, gRPC, Protocol Buffers, pgx sobre PostgreSQL con SQL complejo (CTEs, UNION ALL, restricciones a nivel de base), migraciones con Atlas, observabilidad con OpenTelemetry. Tests unitarios con gomock y tests de integración.</p><p><strong>Infra:</strong> Docker, Google Cloud (Cloud Build), CI con GitHub. Desarrollo asistido por IA con Claude Code, usando varios agentes en paralelo.</p>
+          <h4>Lo que hice</h4>
+          <ul><li>Features de punta a punta (base de datos, servicios Go, gateway y UI).</li><li>Vistas guardadas compartidas por organización: tabla nueva, permisos, RPCs, límites de tamaño y tests de integración.</li><li>Operaciones masivas sobre contactos: mover, copiar o quitar un contacto en muchas propiedades, y editar tipos de contacto y contacto primario.</li><li>Notas y adjuntos para contactos y propiedades, con un paquete compartido entre servicios.</li><li>Reportes y columnas nuevas en el servicio de reportes; paginación de búsquedas.</li><li>Motor de comunicaciones (cartas y postales con campos de combinación): validaciones, deduplicación de envíos y vista previa.</li><li>Reglas de cumplimiento y vencimientos, importación de CSV para sincronizar facturación y detección del tipo MIME real de los archivos subidos.</li><li>Arreglo del reseteo de contraseña en el login centralizado, y migraciones de datos en producción con validaciones previas de solo lectura en sandbox.</li></ul>
+        </div>
+      </details>
     </div>
 
     <div class="project">
       <div class="title-row">
-        <h3>Plataforma de Planificación de Recursos</h3>
-        <span class="status">En producción</span>
+        <h3>School Project <span class="sub">— plataforma educativa</span></h3>
+        <span class="status">oct 2025 – abr 2026</span>
       </div>
-      <p class="desc">Plataforma de planificación de recursos con backend Serverless y GraphQL sobre DynamoDB, orquestando lógica de negocio compleja de scheduling.</p>
-      <div class="tags"><span>React</span><span>TypeScript</span><span>GraphQL</span><span>DynamoDB</span><span>Lambda</span></div>
+      <p class="desc">Plataforma educativa para escuelas: legajo digital del alumno, libro calificador, boletines, gestión de establecimientos y notificaciones. Célula ágil con Jira y Bitbucket.</p>
+      <div class="tags"><span>React 18</span><span>Module Federation</span><span>Material UI</span><span>Node.js</span><span>Hono</span><span>TypeORM</span><span>PostgreSQL</span><span>Redis</span><span>Kubernetes</span></div>
+      <details>
+        <summary>Ver detalle</summary>
+        <div class="detail">
+          <p><strong>Frontend:</strong> Micro-frontends con React 18 + TypeScript y Module Federation sobre Rsbuild (shell, auth, legajo, notificaciones y librería compartida de componentes). Material UI + Emotion, MUI X Date Pickers, TanStack React Query, Axios, Formik + Yup, PDF con @react-pdf/renderer, jsPDF y html2canvas, Excel con xlsx, Google OAuth y reCAPTCHA. Tests con Vitest y Testing Library; ESLint, Prettier, Husky y lint-staged.</p><p><strong>Backend:</strong> Node.js + TypeScript con Hono y un framework REST interno, TypeORM sobre PostgreSQL (base principal y legacy), Redis para permisos y sesiones, JWT y Argon2, Joi, emails con MJML y Nodemailer, Google APIs. Tests con Jest.</p><p><strong>DevOps:</strong> Docker y Docker Compose, Kubernetes con Helm y ArgoCD, CI/CD con CircleCI y Bitbucket Pipelines.</p>
+          <h4>Lo que hice</h4>
+          <ul><li>Migración de componentes a la librería compartida (Card, Checkbox, Typography, Tabbar, Button) y rediseño de las pantallas de Login y Establecimientos.</li><li>Gran parte del módulo Legajo del alumno: reglas de negocio del libro calificador, históricos, períodos de nivel inicial, botones habilitados según el rol de la sesión y selectores País/Provincia dependientes.</li><li>Backend: servicios GET y PUT de datos personales, reutilización de DAOs, corrección de duplicados en materias y en errores de carga, y deudas en boletines.</li><li>Documentación técnica de los proyectos.</li></ul>
+        </div>
+      </details>
     </div>
 
     <div class="project">
       <div class="title-row">
-        <h3>Water Systems</h3>
-        <span class="status">En producción</span>
+        <h3>IBT <span class="sub">— inspecciones de equipos por SMS/MMS</span></h3>
+        <span class="status">sep 2022 – actualidad</span>
       </div>
-      <p class="desc">Plataforma de gestión y cumplimiento para sistemas de agua, con backend en Node.js y base de datos relacional en PostgreSQL sobre Docker.</p>
-      <div class="tags"><span>React</span><span>TypeScript</span><span>Node.js</span><span>PostgreSQL</span><span>Docker</span><span>AWS</span></div>
+      <p class="desc">Sistema serverless para una empresa de materiales de construcción de EE.UU.: los operarios envían inspecciones de equipos (con fotos) por SMS/MMS, y el sistema las cruza con los despachos diarios para generar reportes por obra, alertas de seguridad y seguimiento de issues.</p>
+      <div class="tags"><span>React</span><span>Node.js</span><span>AWS Lambda</span><span>SNS</span><span>Athena</span><span>Twilio</span><span>Serverless</span></div>
+      <details>
+        <summary>Ver detalle</summary>
+        <div class="detail">
+          <p><strong>Frontend:</strong> React 17, React Router, React Bootstrap, AWS Amplify (Cognito), Flatpickr, JSZip, moment-timezone / dayjs.</p><p><strong>Backend:</strong> Node.js en AWS Lambda (más de 60 funciones) con Serverless Framework; Twilio para SMS/MMS, SNS para orquestar el flujo, S3 + Athena para consultas analíticas, DynamoDB, SES para emails y transferencia de datos a Snowflake.</p><p><strong>DevOps:</strong> Ambientes dev / QA / prod en cuentas AWS separadas, ramas por ambiente con Pull Requests en Bitbucket.</p>
+          <h4>Lo que hice</h4>
+          <ul><li>Webapp: descarga de la información del job en PDF, link al reporte de equipos en producción y fallback al superintendente cuando no hay capataz en obra.</li><li>Corrección de una race condition en la carga de imágenes y agrupación de las consultas de MMS por job para mejorar el rendimiento.</li><li>Lambdas de reportes (Job Numbers, Equipment Report, MMS Report): uso de los límites del día en zona horaria del Pacífico en vez de UTC, cruce de equipos despachados por equipo + fecha y manejo de registros con dos números de job.</li><li>Resolución de un incidente en producción (una Lambda leía la configuración del ambiente equivocado): hotfix en caliente y fix de fondo en serverless.yml vía PR.</li></ul>
+        </div>
+      </details>
     </div>
 
     <div class="project">
       <div class="title-row">
-        <h3>Sistema de Inspecciones por SMS</h3>
-        <span class="status">En producción</span>
+        <h3>AIDS <span class="sub">— mensajería de despachos para choferes</span></h3>
+        <span class="status">sep 2022 – actualidad</span>
       </div>
-      <p class="desc">Flujo de inspecciones por SMS/MMS con Twilio orquestado vía AWS SNS hacia Lambda, con consultas analíticas sobre datos en S3 usando Athena.</p>
-      <div class="tags"><span>React</span><span>Twilio</span><span>AWS SNS</span><span>Lambda</span><span>Athena</span></div>
+      <p class="desc">Plataforma del mismo cliente que envía por SMS/MMS a choferes y empleados sus asignaciones diarias de trabajo y equipos, y gestiona confirmaciones, opt-ins, números bloqueados y cancelaciones. Integra datos de HCSS, tracking de equipos y feeds CSV.</p>
+      <div class="tags"><span>Node.js</span><span>AWS Lambda</span><span>SNS</span><span>DynamoDB</span><span>Pinpoint</span><span>Twilio</span></div>
+      <details>
+        <summary>Ver detalle</summary>
+        <div class="detail">
+          <p><strong>Stack:</strong> Node.js en AWS Lambda (~100 microservicios) con Serverless Framework; API Gateway, SNS, S3, DynamoDB, Athena y Pinpoint; Twilio para SMS/MMS; panel web en React + TypeScript con Redux Toolkit y Amplify.</p>
+          <h4>Lo que hice</h4>
+          <ul><li>Mantenimiento del TwilioManager: nueva función de respuesta automática a despachadores.</li><li>Validaciones en las Lambdas que sincronizan empleados, áreas y notificaciones para no ejecutar actualizaciones vacías.</li></ul>
+        </div>
+      </details>
     </div>
 
     <div class="project">
       <div class="title-row">
-        <h3>School Project</h3>
-        <span class="status">Proyecto académico</span>
+        <h3>Forecast 2.0 <span class="sub">— forecasting de costos de obra</span></h3>
+        <span class="status">feb 2021 – ene 2025</span>
       </div>
-      <p class="desc">Frontend en React con arquitectura de microservicios, backend en Node.js/TypeScript con TypeORM y PostgreSQL, testing con Jest y pipeline de análisis de PR asistido por IA.</p>
-      <div class="tags"><span>React</span><span>Node.js</span><span>TypeORM</span><span>PostgreSQL</span><span>Redis</span><span>JWT</span><span>Jest</span><span>Docker</span></div>
+      <p class="desc">Herramienta interna para una empresa constructora de EE.UU. que proyecta el costo final de cada obra: reportes de costos por job, bid items, task codes, revisiones y resúmenes ejecutivos, con datos en Snowflake. Fue mi proyecto principal en esa etapa (~1.000 commits entre frontend y backend).</p>
+      <div class="tags"><span>React</span><span>TypeScript</span><span>Redux Toolkit</span><span>AWS Lambda</span><span>SNS</span><span>Snowflake</span><span>Jest</span></div>
+      <details>
+        <summary>Ver detalle</summary>
+        <div class="detail">
+          <p><strong>Frontend:</strong> React 16 + TypeScript, Redux Toolkit, React Router, PrimeReact, Chart.js, FullCalendar, Axios, xlsx, Sass. Tests con Jest, Testing Library y Enzyme.</p><p><strong>Backend:</strong> Microservicios Lambda en TypeScript (webpack) detrás de un API Gateway único que enruta por acción; Snowflake (snowflake-sdk), DynamoDB, SNS (pub/sub), Cognito (OAuth + validación de JWT), CloudWatch Logs. Tests con Jest.</p><p><strong>DevOps:</strong> Serverless Framework, ambientes dev / QA / prod en cuentas AWS separadas, script de deploy automatizado en paralelo.</p>
+          <h4>Lo que hice</h4>
+          <ul><li>Frontend: pantallas de job cost report, resumen ejecutivo y su historial, detalle de task codes, edición de columnas, menú y mensajes; manejo de estado con Redux y servicios de API.</li><li>Tests unitarios con Jest de los cálculos de task codes.</li><li>Backend: cálculos del resumen ejecutivo (generación y actualización), listeners de S3 para nuevos reportes y procesos de actualización de datos.</li><li>Reglas de negocio en el merge de revisiones de costos: no pisar el costo final cuando hay valores asignados, mantener asignaciones de bid items y parseo de cantidades finales.</li><li>Migración de datos y deploys por ambiente.</li></ul>
+        </div>
+      </details>
+    </div>
+
+    <div class="project">
+      <div class="title-row">
+        <h3>Resource Schedule <span class="sub">— planificación de cuadrillas y equipos</span></h3>
+        <span class="status">nov 2022 – ago 2024</span>
+      </div>
+      <p class="desc">Aplicación para una empresa de pavimentación de EE.UU.: jefes de proyecto y superintendentes planifican cuadrillas, equipos, camiones y materiales por obra, con calendario de largo plazo, mapas de obras, historial de clima y exportación a Excel.</p>
+      <div class="tags"><span>React</span><span>TypeScript</span><span>Apollo Client</span><span>GraphQL</span><span>DynamoDB</span><span>react-dnd</span></div>
+      <details>
+        <summary>Ver detalle</summary>
+        <div class="detail">
+          <p><strong>Frontend:</strong> React 16 + TypeScript, Redux Toolkit, Apollo Client (GraphQL) con tipos generados por graphql-codegen, React Router, Bootstrap, react-dnd (drag &amp; drop), Flatpickr, xlsx, hooks propios.</p><p><strong>Backend:</strong> Apollo Server sobre AWS Lambda, DynamoDB (19 tablas con GSIs), Cognito + JWT, SNS, SQS, S3. Tests con Jest.</p><p><strong>DevOps:</strong> Serverless Framework, Bitbucket Pipelines y AWS CodeBuild; deploy del frontend en S3; ambientes dev / QA / prod.</p>
+          <h4>Lo que hice</h4>
+          <ul><li>Rol principalmente frontend.</li><li>Calendario de reservas de pavimentación a largo plazo, y ampliación del rango de reservas de 3–6 a 12 meses.</li><li>Módulo del superintendente: calendario drag &amp; drop, gestión de equipos y listas, sidebar.</li><li>Gestión de trucking con exportación a Excel, reseteo de ubicación de obras y nuevo selector AM/PM.</li><li>Ocultamiento de acciones según los permisos del usuario.</li></ul>
+        </div>
+      </details>
     </div>
 
   </div>

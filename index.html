@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+<link rel="alternate" hreflang="en" href="https://cristiansivak.github.io/en/">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cristian Sivak — Full Stack Engineer</title>
@@ -44,6 +45,8 @@
   nav .brand{color:var(--ink);font-weight:600;letter-spacing:0.02em;}
   nav .links a{color:var(--muted);margin-left:22px;}
   nav .links a:hover{color:var(--accent);text-decoration:none;}
+  nav .links a.lang{color:var(--ink);border:1px solid var(--line);border-radius:4px;padding:2px 8px;}
+  nav .links a.lang:hover{border-color:var(--accent);}
 
   header.hero{
     padding:100px 0 70px;
@@ -173,6 +176,7 @@
       <a href="#stack">Stack</a>
       <a href="#projects">Proyectos</a>
       <a href="#contact">Contacto</a>
+      <a class="lang" href="en/" hreflang="en">EN</a>
     </span>
   </div>
 </nav>

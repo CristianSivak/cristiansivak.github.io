@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="alternate" hreflang="es" href="https://cristiansivak.github.io/">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cristian Sivak — Full Stack Engineer</title>
+<style>
+  :root{
+    --bg:#0e1310;
+    --bg-soft:#141b17;
+    --ink:#e9ede8;
+    --muted:#8fa196;
+    --accent:#7dd9a5;
+    --line:#243029;
+    --mono:"JetBrains Mono","Courier New",monospace;
+    --serif:"Iowan Old Style","Palatino Linotype",Georgia,serif;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--serif);
+    line-height:1.6;
+  }
+  a{color:var(--accent);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  .wrap{max-width:880px;margin:0 auto;padding:0 28px;}
+
+  nav{
+    position:sticky;top:0;
+    background:rgba(14,19,16,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+    z-index:10;
+  }
+  nav .wrap{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:16px 28px;
+    font-family:var(--mono);
+    font-size:0.82rem;
+  }
+  nav .brand{color:var(--ink);font-weight:600;letter-spacing:0.02em;}
+  nav .links a{color:var(--muted);margin-left:22px;}
+  nav .links a:hover{color:var(--accent);text-decoration:none;}
+  nav .links a.lang{color:var(--ink);border:1px solid var(--line);border-radius:4px;padding:2px 8px;}
+  nav .links a.lang:hover{border-color:var(--accent);}
+
+  header.hero{
+    padding:100px 0 70px;
+    border-bottom:1px solid var(--line);
+  }
+  .kicker{
+    font-family:var(--mono);
+    color:var(--accent);
+    font-size:0.85rem;
+    letter-spacing:0.04em;
+    margin:0 0 18px;
+  }
+  h1{
+    font-size:2.6rem;
+    margin:0 0 16px;
+    font-weight:600;
+    letter-spacing:-0.01em;
+    max-width:16ch;
+  }
+  .hero p.lead{
+    max-width:58ch;
+    color:var(--muted);
+    font-size:1.08rem;
+    margin:0 0 28px;
+  }
+  .contact-row{
+    display:flex;flex-wrap:wrap;gap:18px;
+    font-family:var(--mono);
+    font-size:0.85rem;
+  }
+  .contact-row a{color:var(--ink);border-bottom:1px solid var(--line);padding-bottom:2px;}
+  .contact-row a:hover{color:var(--accent);border-color:var(--accent);text-decoration:none;}
+
+  section{padding:64px 0;border-bottom:1px solid var(--line);}
+  section:last-of-type{border-bottom:none;}
+  section h2{
+    font-family:var(--mono);
+    font-size:0.95rem;
+    color:var(--accent);
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    margin:0 0 34px;
+  }
+  section h2::before{content:"// ";color:var(--muted);}
+
+  .about p{max-width:66ch;color:var(--ink);}
+
+  .stack-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:24px;
+  }
+  .stack-group h3{
+    font-family:var(--mono);
+    font-size:0.78rem;
+    color:var(--muted);
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    margin:0 0 10px;
+  }
+  .stack-group p{margin:0;font-size:0.95rem;}
+
+  .project{
+    padding:26px 0;
+    border-top:1px solid var(--line);
+    display:grid;
+    grid-template-columns:1fr;
+    gap:8px;
+  }
+  .project:first-of-type{border-top:none;}
+  .project .title-row{
+    display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;
+  }
+  .project h3{margin:0;font-size:1.2rem;font-weight:600;}
+  .project .status{
+    font-family:var(--mono);font-size:0.72rem;color:var(--accent);
+    border:1px solid var(--accent);border-radius:20px;padding:2px 10px;
+  }
+  .project p.desc{margin:4px 0 10px;color:var(--muted);max-width:64ch;}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;}
+  .tags span{
+    font-family:var(--mono);font-size:0.72rem;color:var(--ink);
+    background:var(--bg-soft);border:1px solid var(--line);
+    padding:3px 9px;border-radius:4px;
+  }
+
+  .project h3 .sub{font-weight:400;color:var(--muted);font-size:1rem;}
+  details{margin-top:12px;}
+  summary{
+    cursor:pointer;font-family:var(--mono);font-size:0.8rem;color:var(--accent);
+    list-style:none;display:inline-block;
+  }
+  summary::-webkit-details-marker{display:none;}
+  summary::before{content:"+ ";}
+  details[open] summary::before{content:"− ";}
+  .detail{
+    margin-top:14px;padding:18px 20px;background:var(--bg-soft);
+    border:1px solid var(--line);border-radius:6px;font-size:0.95rem;
+  }
+  .detail p{margin:0 0 10px;}
+  .detail strong{font-family:var(--mono);font-size:0.78rem;color:var(--accent);text-transform:uppercase;letter-spacing:0.04em;}
+  .detail h4{font-family:var(--mono);font-size:0.78rem;color:var(--accent);text-transform:uppercase;letter-spacing:0.04em;margin:16px 0 8px;}
+  .detail ul{margin:0;padding-left:20px;}
+  .detail li{margin-bottom:6px;}
+
+  footer{
+    padding:50px 0 80px;
+    font-family:var(--mono);
+    font-size:0.8rem;
+    color:var(--muted);
+  }
+
+  @media (max-width:640px){
+    header.hero{padding:70px 0 50px;}
+    h1{font-size:2rem;}
+    nav .links a{margin-left:14px;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <span class="brand">Cristian Sivak</span>
+    <span class="links">
+      <a href="#about">About</a>
+      <a href="#stack">Stack</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+      <a class="lang" href="../" hreflang="es">ES</a>
+    </span>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="kicker">Full Stack Engineer · Buenos Aires, Argentina</p>
+    <h1>Cristian Sivak</h1>
+    <p class="lead">I build full stack web applications with React, TypeScript, Node.js, Go and AWS. 5+ years shipping production products in distributed teams, with a focus on serverless architecture and AI-assisted development.</p>
+    <div class="contact-row">
+      <a href="mailto:cristian.svk@gmail.com">cristian.svk@gmail.com</a>
+      <a href="https://github.com/CristianSivak" target="_blank" rel="noopener">github.com/CristianSivak</a>
+      <a href="https://www.linkedin.com/in/cristian-sivak" target="_blank" rel="noopener">linkedin.com/in/cristian-sivak</a>
+    </div>
+  </div>
+</header>
+
+<section id="about" class="about">
+  <div class="wrap">
+    <h2>About</h2>
+    <p>I'm a Full Stack Engineer with 5+ years of experience, specialized in React, TypeScript, Node.js and AWS. I currently work at TeamArt.ro, a contracting company with US clients, building full stack applications in distributed teams since February 2021.</p>
+    <p>I focus on React/TypeScript frontends, REST API integration and serverless, event-driven architectures on AWS (Lambda, API Gateway, SNS), and more recently Go microservices with gRPC. I use AI tools like Claude Code and GitHub Copilot in my daily workflow for code generation and review, debugging and documentation.</p>
+    <p>Associate Degree in Computer Programming — National Technological University (UTN), March 2020 – November 2023. English level B2.</p>
+  </div>
+</section>
+
+<section id="stack">
+  <div class="wrap">
+    <h2>Tech stack</h2>
+    <div class="stack-grid">
+      <div class="stack-group">
+        <h3>Frontend</h3>
+        <p>JavaScript, TypeScript, React, Redux Toolkit, React Query, Apollo Client, Material UI, AG Grid, micro-frontends (Module Federation), Next.js, React Native</p>
+      </div>
+      <div class="stack-group">
+        <h3>Backend</h3>
+        <p>Node.js, Hono, Go, gRPC / Protobuf, REST APIs, GraphQL, Serverless, TypeORM, Joi, Redis, JWT, OAuth</p>
+      </div>
+      <div class="stack-group">
+        <h3>Cloud &amp; DevOps</h3>
+        <p>AWS (Lambda, API Gateway, SNS, SQS, S3, RDS, DynamoDB, Athena, Cognito), Google Cloud, Docker, Kubernetes (Helm, ArgoCD), CI/CD</p>
+      </div>
+      <div class="stack-group">
+        <h3>Databases</h3>
+        <p>PostgreSQL, MySQL, DynamoDB, Redis, Athena, Snowflake</p>
+      </div>
+      <div class="stack-group">
+        <h3>Integrations</h3>
+        <p>Twilio (SMS/MMS), AWS SNS, Google APIs, third-party APIs</p>
+      </div>
+      <div class="stack-group">
+        <h3>Practices</h3>
+        <p>Git, testing (Jest, Vitest, Playwright), Scrum, microservices, AI-assisted development</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <h2>Projects</h2>
+
+    <div class="project">
+      <div class="title-row">
+        <h3>Water Systems <span class="sub">— Regulatory compliance SaaS for US municipalities</span></h3>
+        <span class="status">Mar 2026 – Present</span>
+      </div>
+      <p class="desc">Multi-tenant SaaS platform used by US municipalities and water utilities to run environmental compliance programs: backflow prevention, fats, oils and grease (FOG) and industrial pretreatment. 30+ Go microservices communicating over gRPC behind a REST→gRPC API Gateway and Envoy, with a shared PostgreSQL database and a React SPA. Fully remote team, working 100% in English.</p>
+      <div class="tags"><span>React</span><span>TypeScript</span><span>Go</span><span>gRPC</span><span>PostgreSQL</span><span>AG Grid</span><span>Playwright</span><span>Google Cloud</span></div>
+      <details>
+        <summary>View details</summary>
+        <div class="detail">
+          <p><strong>Frontend:</strong> React + TypeScript, Redux Toolkit, Material UI, AG Grid Enterprise (filters, saved views, bulk editing), React Hook Form, Formik + Yup, MapLibre GL, pdf.js / pdf-lib, Webpack. Unit tests with Jest and Testing Library; E2E and accessibility tests with Playwright and axe-core.</p><p><strong>Backend:</strong> Go 1.24, gRPC, Protocol Buffers, pgx on PostgreSQL with complex SQL (CTEs, UNION ALL, database-level constraints), Atlas schema migrations, OpenTelemetry observability. Unit tests with gomock and integration tests.</p><p><strong>Infra:</strong> Docker, Google Cloud (Cloud Build), GitHub CI. AI-assisted development with Claude Code, running multiple agents in parallel.</p>
+          <h4>What I did</h4>
+          <ul><li>End-to-end features across all layers: database, Go services, gateway and UI.</li><li>Organization-wide shared saved views: new table, permissions, RPCs, size limits and integration tests.</li><li>Bulk contact operations: move, copy or remove a contact across many properties, and edit contact types and primary contact.</li><li>Notes and attachments for contacts and properties, built as a package shared across services.</li><li>New reports and columns in the reporting service; paginated search.</li><li>Communications engine (letters and postcards with merge fields): validations, send deduplication and preview.</li><li>Compliance rules and due dates, CSV import to sync billing data, and detection of the real MIME type of uploaded files.</li><li>Fixed password reset in the centralized login, and ran production data migrations with prior read-only validation in a sandbox.</li></ul>
+        </div>
+      </details>
+    </div>
+
+    <div class="project">
+      <div class="title-row">
+        <h3>School Project <span class="sub">— Education platform</span></h3>
+        <span class="status">Oct 2025 – Apr 2026</span>
+      </div>
+      <p class="desc">Education platform for schools: digital student records, gradebook, report cards, school management and notifications. Agile squad working with Jira and Bitbucket.</p>
+      <div class="tags"><span>React 18</span><span>Module Federation</span><span>Material UI</span><span>Node.js</span><span>Hono</span><span>TypeORM</span><span>PostgreSQL</span><span>Redis</span><span>Kubernetes</span></div>
+      <details>
+        <summary>View details</summary>
+        <div class="detail">
+          <p><strong>Frontend:</strong> Micro-frontends with React 18 + TypeScript and Module Federation on Rsbuild (shell, auth, records, notifications and a shared component library). Material UI + Emotion, MUI X Date Pickers, TanStack React Query, Axios, Formik + Yup, PDF generation with @react-pdf/renderer, jsPDF and html2canvas, Excel export with xlsx, Google OAuth and reCAPTCHA. Tests with Vitest and Testing Library; ESLint, Prettier, Husky and lint-staged.</p><p><strong>Backend:</strong> Node.js + TypeScript with Hono and an internal REST framework, TypeORM on PostgreSQL (main and legacy databases), Redis for permissions and sessions, JWT and Argon2, Joi, emails with MJML and Nodemailer, Google APIs. Tests with Jest.</p><p><strong>DevOps:</strong> Docker and Docker Compose, Kubernetes with Helm and ArgoCD, CI/CD with CircleCI and Bitbucket Pipelines.</p>
+          <h4>What I did</h4>
+          <ul><li>Migrated components to the shared library (Card, Checkbox, Typography, Tabbar, Button) and redesigned the Login and Schools screens.</li><li>Built most of the Student Records module: gradebook business rules, history, early-childhood periods, role-based action buttons and dependent Country/Province selectors.</li><li>Backend: GET and PUT services for personal data, DAO reuse, fixes for duplicated subjects and upload errors, and report card debts.</li><li>Wrote the projects' technical documentation.</li></ul>
+        </div>
+      </details>
+    </div>
+
+    <div class="project">
+      <div class="title-row">
+        <h3>IBT <span class="sub">— Equipment inspections via SMS/MMS</span></h3>
+        <span class="status">Sep 2022 – Present</span>
+      </div>
+      <p class="desc">Serverless system for a US construction materials company: operators submit equipment inspections (with photos) by SMS/MMS, and the system matches them against daily dispatches to produce per-job reports, safety alerts and issue tracking.</p>
+      <div class="tags"><span>React</span><span>Node.js</span><span>AWS Lambda</span><span>SNS</span><span>Athena</span><span>Twilio</span><span>Serverless</span></div>
+      <details>
+        <summary>View details</summary>
+        <div class="detail">
+          <p><strong>Frontend:</strong> React 17, React Router, React Bootstrap, AWS Amplify (Cognito), Flatpickr, JSZip, moment-timezone / dayjs.</p><p><strong>Backend:</strong> Node.js on AWS Lambda (60+ functions) with Serverless Framework; Twilio for SMS/MMS, SNS to orchestrate the flow, S3 + Athena for analytical queries, DynamoDB, SES for emails, and data transfer to Snowflake.</p><p><strong>DevOps:</strong> dev / QA / prod environments in separate AWS accounts, per-environment branches with Pull Requests on Bitbucket.</p>
+          <h4>What I did</h4>
+          <ul><li>Web app: job information PDF download, equipment report link in production, and fallback to the superintendent when no on-site foreman is found.</li><li>Fixed an image-loading race condition and batched MMS lookups per job to improve performance.</li><li>Reporting Lambdas (Job Numbers, Equipment Report, MMS Report): Pacific-time day boundaries instead of UTC, dispatched equipment matching by equipment + date, and handling of rows with two job numbers.</li><li>Resolved a production incident (a Lambda was reading the wrong environment's configuration): live hotfix plus a root-cause fix in serverless.yml through a PR.</li></ul>
+        </div>
+      </details>
+    </div>
+
+    <div class="project">
+      <div class="title-row">
+        <h3>AIDS <span class="sub">— Dispatch messaging for drivers</span></h3>
+        <span class="status">Sep 2022 – Present</span>
+      </div>
+      <p class="desc">Platform for the same client that sends drivers and employees their daily job and equipment assignments by SMS/MMS, and manages confirmations, opt-ins, blocked numbers and cancellations. Integrates data from HCSS, equipment tracking and CSV feeds.</p>
+      <div class="tags"><span>Node.js</span><span>AWS Lambda</span><span>SNS</span><span>DynamoDB</span><span>Pinpoint</span><span>Twilio</span></div>
+      <details>
+        <summary>View details</summary>
+        <div class="detail">
+          <p><strong>Stack:</strong> Node.js on AWS Lambda (~100 microservices) with Serverless Framework; API Gateway, SNS, S3, DynamoDB, Athena and Pinpoint; Twilio for SMS/MMS; React + TypeScript admin panel with Redux Toolkit and Amplify.</p>
+          <h4>What I did</h4>
+          <ul><li>TwilioManager maintenance: new automated reply to dispatchers.</li><li>Guards in the Lambdas that sync employees, areas and notifications to skip empty updates.</li></ul>
+        </div>
+      </details>
+    </div>
+
+    <div class="project">
+      <div class="title-row">
+        <h3>Forecast 2.0 <span class="sub">— Construction cost forecasting</span></h3>
+        <span class="status">Feb 2021 – Jan 2025</span>
+      </div>
+      <p class="desc">Internal tool for a US construction company that forecasts the final cost of each job: job cost reports, bid items, task codes, revisions and executive summaries, with data in Snowflake. My main project during that period (~1,000 commits across frontend and backend).</p>
+      <div class="tags"><span>React</span><span>TypeScript</span><span>Redux Toolkit</span><span>AWS Lambda</span><span>SNS</span><span>Snowflake</span><span>Jest</span></div>
+      <details>
+        <summary>View details</summary>
+        <div class="detail">
+          <p><strong>Frontend:</strong> React 16 + TypeScript, Redux Toolkit, React Router, PrimeReact, Chart.js, FullCalendar, Axios, xlsx, Sass. Tests with Jest, Testing Library and Enzyme.</p><p><strong>Backend:</strong> TypeScript Lambda microservices (webpack) behind a single API Gateway that routes by action; Snowflake (snowflake-sdk), DynamoDB, SNS (pub/sub), Cognito (OAuth + JWT validation), CloudWatch Logs. Tests with Jest.</p><p><strong>DevOps:</strong> Serverless Framework, dev / QA / prod environments in separate AWS accounts, automated parallel deployment script.</p>
+          <h4>What I did</h4>
+          <ul><li>Frontend: job cost report, executive summary and its history, task code details, column editing, menu and messaging screens; Redux state management and API services.</li><li>Unit tests with Jest for the task code calculations.</li><li>Backend: executive summary calculations (generation and updates), S3 listeners for new reports, and data update processes.</li><li>Business rules in the cost revision merge: don't overwrite the final cost when allocated values exist, keep bid item assignments, and parse final quantities.</li><li>Data migration and per-environment deployments.</li></ul>
+        </div>
+      </details>
+    </div>
+
+    <div class="project">
+      <div class="title-row">
+        <h3>Resource Schedule <span class="sub">— Crew and equipment planning</span></h3>
+        <span class="status">Nov 2022 – Aug 2024</span>
+      </div>
+      <p class="desc">Application for a US paving company: project managers and superintendents plan crews, equipment, trucks and materials per job, with a long-range calendar, job maps, weather history and Excel export.</p>
+      <div class="tags"><span>React</span><span>TypeScript</span><span>Apollo Client</span><span>GraphQL</span><span>DynamoDB</span><span>react-dnd</span></div>
+      <details>
+        <summary>View details</summary>
+        <div class="detail">
+          <p><strong>Frontend:</strong> React 16 + TypeScript, Redux Toolkit, Apollo Client (GraphQL) with types generated by graphql-codegen, React Router, Bootstrap, react-dnd (drag &amp; drop), Flatpickr, xlsx, custom hooks.</p><p><strong>Backend:</strong> Apollo Server on AWS Lambda, DynamoDB (19 tables with GSIs), Cognito + JWT, SNS, SQS, S3. Tests with Jest.</p><p><strong>DevOps:</strong> Serverless Framework, Bitbucket Pipelines and AWS CodeBuild; frontend deployed to S3; dev / QA / prod environments.</p>
+          <h4>What I did</h4>
+          <ul><li>Mostly a frontend role.</li><li>Long-range paving booking calendar, and extended the booking range from 3–6 to 12 months.</li><li>Superintendent module: drag &amp; drop calendar, equipment and list management, sidebar.</li><li>Trucking management with Excel export, job location reset and a new AM/PM selector.</li><li>Hid actions based on user permissions.</li></ul>
+        </div>
+      </details>
+    </div>
+
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <h2>Contact</h2>
+    <p>Want to talk about an opportunity? Email me at <a href="mailto:cristian.svk@gmail.com">cristian.svk@gmail.com</a> or reach out on <a href="https://www.linkedin.com/in/cristian-sivak" target="_blank" rel="noopener">LinkedIn</a>.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">Cristian Sivak — Lanús, Buenos Aires, Argentina</div>
+</footer>
+
+</body>
+</html>
